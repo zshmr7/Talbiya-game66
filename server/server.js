@@ -18,7 +18,7 @@ const games = new LiveGames();
 const players = new Players();
 
 // MongoDB setup
-const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:chht6WXwdmQwEqCn@cluster0.mongodb.net/mydb?retryWrites=true&w=majority";
+const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:DcF59zjArx30g4oc@cluster0.mongodb.net/mydb?retryWrites=true&w=majority";
 // Connect to MongoDB using Mongoose (Singleton Pattern)
 if (!global._mongoClientPromise) {
     mongoose.connect(MONGO_URI, {
