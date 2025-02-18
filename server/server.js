@@ -16,18 +16,21 @@ const io = socketIO(server);
 const games = new LiveGames();
 const players = new Players();
 
-// MongoDB setup
-const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:LkbyFrO7bKpvQO0u@tabilya-game3.odtsp5d.mongodb.net/?retryWrites=true&w=majority&appName=tabilya-game3";
-// Connect to MongoDB using Mongoose (Singleton Pattern)
-if (!global._mongoClientPromise) {
-    mongoose.connect(MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }).then(() => {
-        console.log("✅ MongoDB connected successfully!");
-        global._mongoClientPromise = mongoose.connection;
-    }).catch(err => console.error("❌ MongoDB connection error:", err));
+require('dotenv').config();
+const mongoose = require('mongoose');
+
+const MONGO_URI = process.env.MONGODB_URI; // Read from environment variables
+
+if (!MONGO_URI) {
+    console.error("❌ MongoDB URI is missing! Please check environment variables.");
+    process.exit(1); // Stop server if MongoDB URI is not set
 }
+
+mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log("✅ MongoDB connected successfully!"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
 
 // Serve static files
 app.use(express.static(publicPath));
