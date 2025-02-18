@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: my-node-app
+    env: node
+    plan: free
+    buildCommand: 'npm install'
+    startCommand: 'node server/server.js'
+    envVars:
+      - key: MONGODB_URI
+        fromService:
+          name: my-mongo
+          key: MONGODB_URL
+  - type: private
+    name: my-mongo
+    env: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: MONGODB_DATABASE
+        value: mydb
