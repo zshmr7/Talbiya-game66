@@ -4,7 +4,6 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
-const { MongoClient } = require('mongodb');
 require('dotenv').config(); // Load environment variables
 
 // Import classes
@@ -17,29 +16,20 @@ const server = http.createServer(app);
 const io = socketIO(server);
 const games = new LiveGames();
 const players = new Players();
-const mongoose = require('mongoose');
-const { MongoClient } = require('mongodb');
-require('dotenv').config(); // Load environment variables
 
 // MongoDB setup
 const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:tWmru8sUPe4wRT5R@cluster0.mongodb.net/mydb?retryWrites=true&w=majority";
 
-// Connect to MongoDB using Mongoose
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log("✅ MongoDB connected successfully!"))
-  .catch(err => console.error("❌ MongoDB connection error:", err));
-
-// Connect to MongoDB using Native MongoClient (for manual queries)
-MongoClient.connect(MONGO_URI, (err, db) => {
-    if (err) {
-        console.error("❌ MongoClient connection error:", err);
-        return;
-    }
-    console.log("✅ MongoClient connected successfully!");
-    db.close();
-});
+// Connect to MongoDB using Mongoose (Singleton Pattern)
+if (!global._mongoClientPromise) {
+    mongoose.connect(MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }).then(() => {
+        console.log("✅ MongoDB connected successfully!");
+        global._mongoClientPromise = mongoose.connection;
+    }).catch(err => console.error("❌ MongoDB connection error:", err));
+}
 
 // Serve static files
 app.use(express.static(publicPath));
@@ -53,33 +43,27 @@ server.listen(3000, async () => {
 
 // Handle WebSocket connections
 io.on('connection', (socket) => {
-    
     // When host connects for the first time
-    socket.on('host-join', (data) => {
-        MongoClient.connect(MONGO_URI, (err, db) => {
-            if (err) throw err;
-            const dbo = db.db("kahootDB");
-            const query = { id: parseInt(data.id) };
+    socket.on('host-join', async (data) => {
+        try {
+            const db = mongoose.connection.db;
+            const result = await db.collection('kahootGames').findOne({ id: parseInt(data.id) });
 
-            dbo.collection('kahootGames').find(query).toArray((err, result) => {
-                if (err) throw err;
+            if (result) {
+                const gamePin = Math.floor(Math.random() * 90000) + 10000;
+                games.addGame(gamePin, socket.id, false, { playersAnswered: 0, questionLive: false, gameid: data.id, question: 1 });
 
-                if (result.length > 0) {
-                    const gamePin = Math.floor(Math.random() * 90000) + 10000;
-                    games.addGame(gamePin, socket.id, false, { playersAnswered: 0, questionLive: false, gameid: data.id, question: 1 });
+                const game = games.getGame(socket.id);
+                socket.join(game.pin);
 
-                    const game = games.getGame(socket.id);
-                    socket.join(game.pin);
-
-                    console.log('✅ Game Created with pin:', game.pin);
-
-                    socket.emit('showGamePin', { pin: game.pin });
-                } else {
-                    socket.emit('noGameFound');
-                }
-                db.close();
-            });
-        });
+                console.log('✅ Game Created with pin:', game.pin);
+                socket.emit('showGamePin', { pin: game.pin });
+            } else {
+                socket.emit('noGameFound');
+            }
+        } catch (err) {
+            console.error("❌ Database query error:", err);
+        }
     });
 
     // Player joining game
@@ -115,7 +99,7 @@ io.on('connection', (socket) => {
     });
 
     // Player answers a question
-    socket.on('playerAnswer', (num) => {
+    socket.on('playerAnswer', async (num) => {
         const player = players.getPlayer(socket.id);
         if (!player) return;
 
@@ -124,14 +108,12 @@ io.on('connection', (socket) => {
             player.gameData.answer = num;
             game.gameData.playersAnswered++;
 
-            MongoClient.connect(MONGO_URI, (err, db) => {
-                if (err) throw err;
-                const dbo = db.db('kahootDB');
-                const query = { id: parseInt(game.gameData.gameid) };
+            try {
+                const db = mongoose.connection.db;
+                const result = await db.collection('kahootGames').findOne({ id: parseInt(game.gameData.gameid) });
 
-                dbo.collection("kahootGames").find(query).toArray((err, res) => {
-                    if (err) throw err;
-                    const correctAnswer = res[0].questions[game.gameData.question - 1].correct;
+                if (result) {
+                    const correctAnswer = result.questions[game.gameData.question - 1].correct;
 
                     if (num === correctAnswer) {
                         player.gameData.score += 100;
@@ -149,9 +131,10 @@ io.on('connection', (socket) => {
                             playersAnswered: game.gameData.playersAnswered
                         });
                     }
-                    db.close();
-                });
-            });
+                }
+            } catch (err) {
+                console.error("❌ Database query error:", err);
+            }
         }
     });
 
