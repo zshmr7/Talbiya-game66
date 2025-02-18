@@ -4,7 +4,6 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables
 
 // Import classes
 const { LiveGames } = require('./utils/liveGames');
