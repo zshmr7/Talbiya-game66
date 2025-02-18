@@ -4,6 +4,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
+require('dotenv').config(); // Load environment variables
 
 // Import classes
 const { LiveGames } = require('./utils/liveGames');
@@ -16,34 +17,46 @@ const io = socketIO(server);
 const games = new LiveGames();
 const players = new Players();
 
-require('dotenv').config();
-const mongoose = require('mongoose');
+// ✅ MongoDB URI from environment variables
+const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:iUNHkBLElpvKi731@tabilya-game3.odtsp5d.mongodb.net/?retryWrites=true&w=majority&appName=tabilya-game3";
 
-const MONGO_URI = process.env.MONGODB_URI; // Read from environment variables
-
+// ✅ Check if MongoDB URI is available
 if (!MONGO_URI) {
-    console.error("❌ MongoDB URI is missing! Please check environment variables.");
+    console.error("❌ MongoDB URI is missing! Please check your environment variables.");
     process.exit(1); // Stop server if MongoDB URI is not set
 }
 
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log("✅ MongoDB connected successfully!"))
-  .catch(err => console.error("❌ MongoDB connection error:", err));
+// ✅ Function to establish MongoDB connection
+async function connectToMongoDB() {
+    try {
+        await mongoose.connect(MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("✅ MongoDB connected successfully!");
+    } catch (err) {
+        console.error("❌ MongoDB connection error:", err);
+        process.exit(1); // Stop the server on connection failure
+    }
+}
+
+// ✅ Run connection
+connectToMongoDB();
 
 // Serve static files
 app.use(express.static(publicPath));
 
-// Start server on port 3000
+// ✅ Start server on port 3000
 server.listen(3000, async () => {
     console.log("✅ Server started on port 3000");
     const open = (await import('open')).default;
     open('http://localhost:3000');
 });
 
-// Handle WebSocket connections
+// ✅ Handle WebSocket connections
 io.on('connection', (socket) => {
+    console.log("🔵 New WebSocket connection established");
+
     // When host connects for the first time
     socket.on('host-join', async (data) => {
         try {
@@ -57,7 +70,7 @@ io.on('connection', (socket) => {
                 const game = games.getGame(socket.id);
                 socket.join(game.pin);
 
-                console.log('✅ Game Created with pin:', game.pin);
+                console.log(`✅ Game Created with pin: ${game.pin}`);
                 socket.emit('showGamePin', { pin: game.pin });
             } else {
                 socket.emit('noGameFound');
@@ -71,11 +84,11 @@ io.on('connection', (socket) => {
     socket.on('player-join', (params) => {
         let gameFound = false;
 
-        for (let i = 0; i < games.games.length; i++) {
-            if (params.pin === games.games[i].pin) {
+        for (const game of games.games) {
+            if (params.pin === game.pin) {
                 console.log('✅ Player connected to game');
 
-                const hostId = games.games[i].hostId;
+                const hostId = game.hostId;
                 players.addPlayer(hostId, socket.id, params.name, { score: 0, answer: 0 });
 
                 socket.join(params.pin);
@@ -139,13 +152,13 @@ io.on('connection', (socket) => {
         }
     });
 
-    // When a player or host disconnects
+    // Handle disconnect
     socket.on('disconnect', () => {
         const game = games.getGame(socket.id);
         if (game) {
             if (!game.gameLive) {
                 games.removeGame(socket.id);
-                console.log('❌ Game ended with pin:', game.pin);
+                console.log(`❌ Game ended with pin: ${game.pin}`);
 
                 const playersToRemove = players.getPlayers(game.hostId);
                 playersToRemove.forEach(player => players.removePlayer(player.playerId));
