@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <title>Host | Talbiya-game</title>
+    <link rel="stylesheet" href="../css/host.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <header>
+        <div class="main">
+            <div class="logo-left">
+                <img src="https://www.talbiya.sa/uploads/configuration/20200515134851SqgN7E25qV.png" alt="">
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="active" href="https://www.talbiya.sa/ar/page/news">اخبارنا</a></li>
+                    <li><a href="https://www.talbiya.sa/ar/page/registration">التسجيل</a></li>
+                    <li><a href="https://www.talbiya.sa/ar/page/appointment">لطلب موعد</a></li>
+                </ul>
+            </nav>
+            <div class="logo-right">
+                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png" alt="">
+            </div>
+        </div>
+    </header>
+<div class="center-container">
+    <button id="cancel" onclick="endGame()">Cancel Game</button>
+    <h2 id="title">انضم الان الى المسابقة عبر ادخال الرمز المعطى</h2>
+    <h1 id="gamePinText"></h1>
+    <textarea style="width: 100%; max-width: 700px; height: 500px;" readonly id="players"></textarea>
+    <br>
+    <button id="start" onclick="startGame()">ابدا اللعب</button>
+    <br>
+    <br>
+</div>
+<footer class="footer">
+    <h2>للتواصل معنا</h2>
+    <a href="https://www.facebook.com/talbiyaksa/" class="fa fa-facebook"></a>
+    <a href="https://twitter.com/TalbiyaKSA" class="fa fa-twitter"></a>
+    <a href="https://www.instagram.com/talbiyaksa/" class="fa fa-instagram"></a>
+    <a href="https://www.snapchat.com/add/talbiya_ksa" class="fa fa-snapchat-ghost"></a>
+
+    <div class="footer-column">
+        <p>info@talbiya.sa</p>
+        <p>00966556083172</p>
+    </div>
+
+    <div class="logo3">
+        <a href="https://www.talbiya.sa/ar"></a>
+        <img src="https://i.ibb.co/YpTZhj9/4.png" alt="Your Logo">
+    </div>
+
+    <p class="copyright">
+    </p>
+</footer>
+<p class="copyright">
+    Copyrights By | <span></span> <a href="https://sakhr.online">sakhr solution</a>
+</p>
+<script src="../socket.io/socket.io.js"></script>
+<script src="../js/libs/jqueryLibrary.js"></script>
+<script src="../js/libs/deparam.js"></script>
+<script src="../js/host.js"></script>
+</body>
+</html>

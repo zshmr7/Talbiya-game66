@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Game | Talbiya game </title>
+        <link rel = "stylesheet" href = "../../css/hostGameView.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Tajawal" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <header>
+            <div class="main">
+                <div class="logo">
+                    <img src="https://i.ibb.co/YpTZhj9/4.png" alt="">
+                </div>
+        
+        
+        
+                <nav>
+                    <ul>
+                        <li><a class="active" href="https://www.talbiya.sa/ar/page/news">اخبارنا</a></li>
+                        <li><a href="https://www.talbiya.sa/ar/page/registration">التسجيل</a></li>
+                        <li><a href="https://www.talbiya.sa/ar/page/appointment">لطلب موعد</a></li>
+                    </ul>
+                </nav>
+        
+        
+        
+        
+                <div class="main">
+                    <div class="logo2">
+                        <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png" alt="">
+                    </div>
+        
+        
+        
+               
+            </div>
+        </header>
+        <h4 id = "questionNum">Question 1 / x</h4>
+        <h4 id = "playersAnswered">اجابات اللاعبين : 0 / x</h4>
+        <h3 id = "timerText">الوقت المتبقي :<span id = "num"> 30 ثانية</span></h3>
+        
+        
+        <div class = "square" id = "square1"></div>
+        <div class = "square" id = "square2"></div>
+        <div class = "square" id = "square3"></div>
+        <div class = "square" id = "square4"></div>
+        
+        <h2 id = "question">Question</h2>
+        <h3 id = "answer1">Answer</h3>
+        <br>
+        <h3 id = "answer2">Answer</h3>
+        <br>
+        <h3 id = "answer3">Answer</h3>
+        <br>
+        <h3 id = "answer4">Answer</h3>
+        
+        <br>
+        <button onclick = "nextQuestion()" id = "nextQButton">Next Question</button>
+        
+        <h2 id = "winnerTitle">الفـائزين بالـ  5 مراكز الاولى </h4>
+        <h3 id = "winner1">1.</h3>
+        <h3 id = "winner2">2.</h3>
+        <h3 id = "winner3">3.</h3>
+        <h3 id = "winner4">4.</h3>
+        <h3 id = "winner5">5.</h3>
+        <h3 id = "winner5">6.</h3>
+        <h3 id = "winner5">7.</h3>
+        <h3 id = "winner5">8.</h3>
+        <h3 id = "winner5">9.</h3>
+        <h3 id = "winner5">10.</h3>
+
+        <script src = "../../socket.io/socket.io.js"></script>
+        <script src = "../../js/libs/jqueryLibrary.js"></script>
+        <script src = "../../js/libs/deparam.js"></script>
+        <script src = "../../js/hostGame.js"></script>
+        <footer class="footer">
+            <h2>للتواصل معنا</h2>
+            <a href="https://www.facebook.com/talbiyaksa/" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/TalbiyaKSA" class="fa fa-twitter"></a>
+            <a href="https://www.instagram.com/talbiyaksa/" class="fa fa-instagram"></a>
+            <a href="https://www.snapchat.com/add/talbiya_ksa" class="fa fa-snapchat-ghost"></a>
+        
+            <div class="footer-column">
+                <p>info@talbiya.sa</p>
+                <p>00966556083172</p>
+            </div>
+        
+            <div class="logo3">
+                <a href="https://www.talbiya.sa/ar"></a>
+                <img src="https://i.ibb.co/YpTZhj9/4.png" alt="Your Logo">
+            </div>
+        
+            <p class="copyright">
+            </p>
+        </footer>
+        <p class="copyright">
+            Copyrights By | <span>صخر</span> | <a href="https://sakhr.online">sakhr solution</a>
+        </p>
+    </body>
+</html>

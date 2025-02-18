@@ -1,0 +1,206 @@
+#answer1{
+    background-color: #4CAF50;
+    margin: auto;
+    padding: 30px 10px;
+    width: 500px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+#answer2{
+    background-color: #f94a1e;
+    margin: auto;
+    padding: 30px 10px;
+    width: 500px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+#answer3{
+    background-color: #3399ff;
+    margin: auto;
+    padding: 30px 10px;
+    width: 500px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+#answer4{
+    background-color: #ff9933;    
+    margin: auto;
+    padding: 30px 10px;
+    width: 500px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+.square{
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    width: 70px;
+    height: 0px;
+    font-size: 20px;
+   
+}
+
+#square1{
+    background-color: #4CAF50;
+}
+#square2{
+    background-color: #f94a1e;
+}
+#square3{
+    background-color: #3399ff;
+}
+#square4{
+    background-color: #ff9933;
+}
+
+#nextQButton{
+    display: none;
+}
+#question{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
+#timerText{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color: brown;
+}
+#num{
+    font-family: 'Tajawal', sans-serif;
+    font-size: 35px;
+    text-align: center;
+}
+#playersAnswered{
+    font-family: 'Tajawal', sans-serif;
+    text-align: center;
+    color: #4CAF50;
+}
+#questionNum{
+    font-family: 'Tajawal', sans-serif;
+    text-align: center;
+    color: black;
+}
+
+#winner1{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    display: none;
+}
+#winner2{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 22px;
+    display: none;
+}
+#winner3{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 20px;
+    display: none;
+}
+#winner4{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    display: none;
+}
+#winner5{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    display: none;
+}
+#winnerTitle{
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 35px;
+    color: #3399ff;
+    display: none;
+}
+body{
+   
+    background-position: left;
+    background-repeat: no-repeat;
+    background-color: rgb(216, 216, 216);
+    background-image: url(https://export-download.canva.com/W3X5A/DAGD7qW3X5A/31/0/0001-5311296403939780769.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJHKNGJLC2J7OGJ6Q%2F20240430%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240430T012350Z&X-Amz-Expires=85838&X-Amz-Signature=6e903e41fc81be38ceb11a5f3391d91fd5adcd55378bd99d1c8e6b01f45f48a3&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27%25D9%2584%25D9%2586%25D8%25A8%25D8%25AF%25D8%25A7.png&response-expires=Wed%2C%2001%20May%202024%2001%3A14%3A28%20GMT);
+}
+header {
+    background-color: #f0f0f0; /* Background color for the header */
+    padding: 10px; /* Optional: Add some padding */
+}
+
+.main {
+    display: flex; /* Use flexbox to arrange the logos */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    align-items: center; /* Center items vertically */
+}
+
+.logo img,
+.logo2 img,
+.van img {
+    max-height: 120px; /* Set maximum height for the logos */
+    width: auto; /* Allow the width to adjust proportionally */
+}
+nav ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Display list items inline */
+    margin: 0 130px; /* Optional: Add some margin between list items */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Display links as blocks */
+    padding: 10px 20px; /* Add padding to create button-like appearance */
+    background-color: #218838; /* Background color for buttons */
+    color: rgb(255, 255, 255); /* Set text color */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+footer{
+    background-color: #f0f0f0;
+    color: rgb(0, 0, 0);
+  margin-top: 400px;
+ padding: 1rem;
+ padding-left: 12px;
+    text-align: center;
+    justify-content: space-between;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+        align-items: center; /* Center content vertically */
+        margin-top: 0; /* Remove margin-top on smaller screens */
+    }
+
+    .footer-content {
+        width: 90%; /* Adjust width of footer content on smaller screens */
+        max-width: none; /* Remove max-width on smaller screens */
+    }
+
+    .footer-column {
+        margin: 10px 0; /* Adjust margin between columns on smaller screens */
+    }
+
+    .logo4 {
+        text-align: center; /* Center align logo on smaller screens */
+    }
+}  
+
+      
+
+
+
+

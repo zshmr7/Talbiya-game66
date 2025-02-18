@@ -1,0 +1,319 @@
+/* Common Styles */
+body {
+    background-repeat: no-repeat;
+    background-color: rgb(233, 234, 234);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo img,
+.logo2 img,
+.van img {
+    max-height: 120px;
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #218838;
+    color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0;
+}
+
+footer {
+    background-color: #f0f0f0;
+    color: rgb(0, 0, 0);
+    padding: 1em;
+    text-align: center;
+    justify-content: space-between;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    header {
+        padding: 5px;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    footer {
+        padding: 0.5em;
+    }
+}
+
+/* #question-field Styles */
+#question-field {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(15, 14, 14, 0.5), rgba(15, 14, 14, 0.5), rgba(15, 14, 14, 0.5)), url(https://n.sinaimg.cn/sinakd20201022s/700/w960h540/20201022/9dad-kavypmq1155832.jpg);
+    border-style: double;
+    color: #000;
+    font-weight: bold;
+    padding: 55px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    margin: 50px auto;
+    width: 90%;
+    max-width: 500px;
+    height: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.question {
+    width: 250px;
+    justify-content: space-between;
+    font-family: 'Raleway', sans-serif;
+    margin: 20px auto;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(222, 222, 222);
+}
+
+.question-field.correct {
+    color: #000;
+}
+
+.correct {
+    width: 150px;
+    color: black;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    background-color: rgb(218, 230, 218);
+}
+
+#title {
+    padding-top: 30px;
+    color: rgb(25, 91, 10);
+    font-size: 90px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+#quizTitle {
+    color: rgb(0, 0, 0);
+    font-size: large;
+    padding-top: 450px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.form-field,
+.from {
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    #question-field {
+        width: 100%;
+        margin: 50px auto;
+        padding: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #title {
+        font-size: 30px;
+        padding-top: 10px;
+    }
+
+    #quizTitle {
+        font-size: 16px;
+        padding-top: 30px;
+    }
+
+    .form-field,
+    .from {
+        width: 90%;
+        margin: 20px auto;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    nav ul li a {
+        padding: 8px 16px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: normal;
+        padding: 40px;
+    }
+
+    .logo3 {
+        position: static;
+        margin: 10px 0;
+    }
+}
+#allQuestions {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 500px;
+}
+
+#question-field {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(15, 14, 14, 0.5), rgba(15, 14, 14, 0.5), rgba(15, 14, 14, 0.5)), url(https://n.sinaimg.cn/sinakd20201022s/700/w960h540/20201022/9dad-kavypmq1155832.jpg);
+    border-style: double;
+    color: #184922;
+    font-weight: bold;
+    padding: 20px;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
+
+#question-field label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#question-field input, .correct {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.correct {
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+    #allQuestions {
+        width: 90%;
+    }
+
+    #question-field {
+        padding: 15px;
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+
+    #question-field input, .correct {
+        padding: 6px;
+        margin-bottom: 8px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #question-field {
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #question-field input, .correct {
+        padding: 5px;
+        margin-bottom: 6px;
+    }
+    .from {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .from button {
+        margin-top: 40px;
+    }
+    
+}
+
+.from {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.from button {
+    padding:  10px 30px;
+    font-size: 16px;
+    background-color: #218838;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.correct-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.correct-section label {
+    flex: 0 0 30%;
+    margin-right: 10px;
+}
+
+.correct-section input {
+    flex: 1;
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#question-field button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    text-align: left;
+    display: block;
+    margin-top: 10px;
+}

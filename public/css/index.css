@@ -1,0 +1,269 @@
+header {
+    background-color: #f0f0f0; /* Background color for the header */
+    padding: 10px; /* Optional: Add some padding */
+}
+
+.main {
+    display: flex; /* Use flexbox to arrange the logos */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    align-items: center; /* Center items vertically */
+}
+
+.logo img,
+.logo2 img,
+.van img {
+    max-height: 120px; /* Set maximum height for the logos */
+    width: auto; /* Allow the width to adjust proportionally */
+}
+nav ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Display list items inline */
+    margin: 0 120px; /* Optional: Add some margin between list items */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Display links as blocks */
+    padding: 10px 20px; /* Add padding to create button-like appearance */
+    background-color: #218838; /* Background color for buttons */
+    color: rgb(255, 255, 255); /* Set text color */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+
+
+.active {
+    font-weight: bold; /* Apply bold font weight for active link */
+}
+
+
+.video-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url(https://www.vision2030.gov.sa/media/y14lwd12/smo_dynamicbanner_annualreport__ara_10sec_2.mp4); /* URL for background image */
+    background-size: cover;
+    background-position: center;
+}
+
+#myVideo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.button {
+    background-color: #218838;
+    color: white;
+    padding: 15px 30px;
+    font-size: 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.main {
+    margin-left: auto;
+    max-width: 100%; /* Adjust the maximum width of the container */
+}
+
+.logo2 {
+    float:right; /* Align the logo to the left */
+    max-width: 100%; /* Ensure the logo fits within its container */
+    height: auto; /* Maintain aspect ratio */
+}
+.join-section {
+    text-align: center;
+    padding: 50px;
+    background-color: #f8f9fa;
+}
+
+#title {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.form-field {
+    display:flex;
+    flex-direction: column;
+}
+
+#label {
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+input[type="text"],
+input[type="number"],
+button {
+    padding: 10px;
+    font-size: 18px;
+}
+
+#joinButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#joinButton:hover {
+    background-color: #218838;
+}
+
+#host {
+    font-size: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+#host:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+.fa {
+    font-size: 20px;
+    width: 30px; /* Adjust the width as needed */
+    text-align: center;
+    text-decoration: none;
+    margin: 5px; /* Adjust the margin as needed */
+}
+
+/* Ensure all icons are displayed in one line */
+.fa-facebook, .fa-twitter, .fa-instagram, .fa-snapchat-ghost {
+    display: inline-block;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.fa-snapchat-ghost {
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0; /* Background color for the footer */
+
+}
+
+.logo3 {
+    position: absolute;
+    right: 20px; /* Adjust the distance from the right side as needed */
+}
+
+.logo3 img {
+    width: 100px; /* Adjust the width of the logo as needed */
+    height: auto;
+}
+
+
+.copyright-container {
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0; /* Reset default margins */
+    font-size: 12px; /* Adjust font size as needed */
+}
+
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-left img,
+    .logo-right img,
+    .van img {
+        max-height: 80px; /* Adjust maximum height for logos on mobile */
+    }
+
+    nav ul li {
+        margin: 0 5px; /* Adjust margin for list items on mobile */
+    }
+
+    nav ul li a {
+        padding: 8px 16px; /* Adjust padding for links on mobile */
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .logo3 {
+        position: static;
+        margin: 10px 0; /* Adjust margin for logo in footer on mobile */
+    }
+}

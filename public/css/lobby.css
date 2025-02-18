@@ -1,0 +1,163 @@
+/* Common Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loader {
+    width: 100px;
+    height: 20px; /* Adjusted height for horizontal loader */
+    background-color: #f3f3f3;
+    margin-bottom: 20px; /* Add margin to separate loader from text */
+}
+
+/* Animation for the loader */
+.loader:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #218838;
+    animation: loader-animation 2s linear infinite;
+}
+
+@keyframes loader-animation {
+    50% {
+        width: 50%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+
+header {
+    background-color: #f0f0f0; /* Background color for the header */
+    padding: 10px; /* Optional: Add some padding */
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo img,
+.logo2 img,
+.van img {
+    max-height: 120px;
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 120px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #218838;
+    color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0;
+}
+
+.active {
+    font-weight: bold;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo3 {
+    position: absolute;
+    right: 20px;
+}
+
+.logo3 img {
+    width: 120px;
+    height: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.footer-column {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.logo4 {
+    text-align: right;
+}
+
+.logo4 img {
+    width: 120px;
+    height: auto;
+}
+
+/* Positioning for the copyright text */
+.copyright-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 12px;
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo img,
+    .logo2 img,
+    .van img {
+        max-height: 80px;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        padding: 8px 16px;
+    }
+
+    .loader {
+        margin-bottom: 10px; /* Adjust margin for loader on mobile */
+    }
+}

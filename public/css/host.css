@@ -1,0 +1,162 @@
+/* Common styles */
+.header {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-left img,
+.logo-right img {
+    max-height: 120px;
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 120px; /* Adjust margin for list items */
+}
+
+nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #218838;
+    color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0;
+}
+
+.active {
+    font-weight: bold;
+}
+
+/* Center container styles */
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.center-container button,
+.center-container h2,
+.center-container h1,
+.center-container textarea,
+.center-container br {
+    margin-bottom: 10px;
+}
+
+/* Footer styles */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.footer h2 {
+    margin-bottom: 10px;
+}
+
+.footer .fa {
+    font-size: 20px;
+    margin: 0 5px;
+}
+
+.footer .footer-column {
+    text-align: right;
+}
+
+.footer .footer-column p {
+    margin: 5px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer .logo3 {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.footer .logo3 img {
+    width: 120px;
+    height: auto;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #000;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Positioning for the copyright text */
+.footer .copyright-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-left img,
+    .logo-right img {
+        max-height: 80px; /* Adjust maximum height for logos on mobile */
+    }
+
+    nav ul li {
+        margin: 0 5px; /* Adjust margin for better spacing on smaller screens */
+    }
+
+    nav ul li a {
+        padding: 8px 16px; /* Adjust padding for button links */
+    }
+
+    .footer .logo3 {
+        position: relative;
+        right: auto;
+        margin: 0 auto;
+    }
+    #players {
+        width: 90%; /* Adjust width for better responsiveness */
+        max-width: 500px; /* Set maximum width for smaller screens */
+        height: 200px; /* Adjust height */
+    }
+    .footer .footer-column {
+        text-align: center;
+    }
+
+    .footer .logo3 {
+        margin-top: 20px;
+    }
+
+    .footer .logo3 img {
+        width: 80px;
+    }
+}

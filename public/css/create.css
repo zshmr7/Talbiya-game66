@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img,
+.logo2 img {
+    max-height: 120px;
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 120px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #218838;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0;
+}
+
+/* Video Container Styles */
+.video-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.content a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #218838;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Add margin between buttons */
+}
+
+.content h1,
+.content h4 {
+    margin: 0;
+}
+
+/* Footer Styles */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.footer h2 {
+    margin: 0;
+}
+
+.footer-column p {
+    margin: 5px 0;
+}
+
+.logo3 {
+    max-width: 120px;
+}
+
+.fa {
+    font-size: 20px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.fa-snapchat-ghost {
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo img,
+    .logo2 img {
+        max-height: 80px;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        padding: 8px 16px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .logo3 {
+        position: static;
+        margin: 10px 0;
+    }
+    .content button {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+}
+

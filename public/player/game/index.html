@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game | Talbiya-game</title>
+    <link rel="stylesheet" href="../../css/playerGameView.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="main">
+            <div class="logo">
+                <img src="https://i.ibb.co/YpTZhj9/4.png" alt="">
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="active" href="https://www.talbiya.sa/ar/page/news">اخبارنا</a></li>
+                    <li><a href="https://www.talbiya.sa/ar/page/registration">التسجيل</a></li>
+                    <li><a href="https://www.talbiya.sa/ar/page/appointment">لطلب موعد</a></li>
+                </ul>
+            </nav>
+            <div class="logo2">
+                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png" alt="">
+            </div>
+        </div>
+    </header>
+
+    <div id="stats">
+        <h4 id="nameText">الاسم : </h4>
+        <h4 id="scoreText">النقاط : </h4>
+        <h4 id="rankText"></h4>
+    </div>
+
+    <h2 id="message"></h2>
+    
+    <div class="button-container">
+        <button onclick="answerSubmitted(1)" id="answer1" class="button">Answer 1</button>
+        <button onclick="answerSubmitted(2)" id="answer2" class="button">Answer 2</button>
+        <br>
+        <button onclick="answerSubmitted(3)" id="answer3" class="button">Answer 3</button>
+        <button onclick="answerSubmitted(4)" id="answer4" class="button">Answer 4</button>
+    </div>
+
+    <script src="../../socket.io/socket.io.js"></script>
+    <script src="../../js/libs/jqueryLibrary.js"></script>
+    <script src="../../js/libs/deparam.js"></script>
+    <script src="../../js/playerGame.js"></script>
+
+    <footer class="footer">
+        <h2>للتواصل معنا</h2>
+        <a href="https://www.facebook.com/talbiyaksa/" class="fa fa-facebook"></a>
+        <a href="https://twitter.com/TalbiyaKSA" class="fa fa-twitter"></a>
+        <a href="https://www.instagram.com/talbiyaksa/" class="fa fa-instagram"></a>
+        <a href="https://www.snapchat.com/add/talbiya_ksa" class="fa fa-snapchat-ghost"></a>
+    
+        <div class="footer-column">
+            <p>info@talbiya.sa</p>
+            <p>00966556083172</p>
+        </div>
+    
+        <div class="logo3">
+            <a href="https://www.talbiya.sa/ar"></a>
+            <img src="https://i.ibb.co/YpTZhj9/4.png" alt="Your Logo">
+        </div>
+    </footer>
+
+    <p class="copyright">
+        Copyrights By | <span>صخر</span> | <a href="https://sakhr.online">sakhr solution</a>
+    </p>
+</body>
+</html>

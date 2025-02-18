@@ -1,0 +1,140 @@
+
+.button-container {
+    text-align: center; /* Center align the button container */
+}
+
+
+
+
+
+.button {
+    width: 50%; /* Adjust button width for two buttons side by side */
+    height: 150px; /* Set height to make the buttons square */
+    text-align: center; /* Center align text */
+    font-size: 20px; /* Set font size */
+    font-family: 'Raleway', sans-serif; /* Set font family */
+    display: inline-block; /* Display buttons inline */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+#buttons {
+    text-align: center;
+}
+
+#answer1 {
+    background-color: #4CAF50;
+}
+
+#answer2 {
+    background-color: #f94a1e;
+}
+
+#answer3 {
+    background-color: #3399ff;
+}
+
+#answer4 {
+    background-color: #ff9933;
+}
+
+#nameText{
+    font-family: 'Raleway', sans-serif;
+    padding: 0px 30px;
+    text-align: center;
+}
+#scoreText{
+    font-family: 'Raleway', sans-serif;
+    padding: 0px 30px;
+    text-align: center;
+}
+#message{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 35px;
+}
+header {
+    background-color: #f0f0f0; /* Background color for the header */
+    padding: 10px; /* Optional: Add some padding */
+}
+
+.main {
+    display: flex; /* Use flexbox to arrange the logos */
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    align-items: center; /* Center items vertically */
+}
+
+.logo img,
+.logo2 img,
+.van img {
+    max-height: 120px; /* Set maximum height for the logos */
+    width: auto; /* Allow the width to adjust proportionally */
+}
+nav ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Display list items inline */
+    margin: 0 120px; /* Optional: Add some margin between list items */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Display links as blocks */
+    padding: 10px 20px; /* Add padding to create button-like appearance */
+    background-color: #218838; /* Background color for buttons */
+    color: rgb(255, 255, 255); /* Set text color */
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+}
+footer{
+    background-color: #f0f0f0;
+    color: black;
+    padding: 2em;
+    text-align: center;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 768px) {
+    .button {
+        width: 90%; /* Adjust button width for smaller screens */
+        height: 100px; /* Set height for smaller screens */
+        margin-bottom: 10px; /* Adjust margin for better spacing */
+    }
+
+    #nameText,
+    #scoreText,
+    #message {
+        padding: 10px; /* Adjust padding for text elements */
+    }
+
+
+    #nameText,
+    #scoreText,
+    #message {
+        padding: 10px; /* Adjust padding for text elements */
+    }
+
+    nav ul li {
+        margin: 0 5px; /* Adjust margin for better spacing on smaller screens */
+    }
+
+    nav ul li a {
+        padding: 8px 16px; /* Adjust padding for button links */
+    }
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo img,
+    .logo2 img,
+    .van img {
+        max-height: 80px; /* Adjust maximum height for logos on smaller screens */
+    }
+}

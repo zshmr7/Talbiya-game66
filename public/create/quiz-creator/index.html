@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>Creator | Talbiya-game</title>
+        <link rel = "stylesheet" href = "../../css/quizCreator.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+
+        <header>
+            <div class="main">
+                <div class="logo">
+                    <img src="https://i.ibb.co/YpTZhj9/4.png" alt="">
+                </div>
+        
+        
+        
+                <nav>
+                    <ul>
+                        <li><a class="active" href="https://www.talbiya.sa/ar/page/news">اخبارنا</a></li>
+                        <li><a href="https://www.talbiya.sa/ar/page/registration">التسجيل</a></li>
+                        <li><a href="https://www.talbiya.sa/ar/page/appointment">لطلب موعد</a></li>
+                    </ul>
+                </nav>
+        
+        
+        
+        
+                <div class="main">
+                    <div class="logo2">
+                        <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/f/f5/Saudi_Vision_2030_logo.svg/1280px-Saudi_Vision_2030_logo.svg.png" alt="">
+                    </div>
+        
+        
+        
+               
+            </div>
+        </header>
+
+
+
+
+        <h1 id = "title">Talbiya-game Studio</h1>
+       
+       
+
+
+
+
+        <div class="form-field">
+            <label id = "quizTitle">عنوان الاسالة </label>
+            <input id = "name" type = "text" name="name" autofocus/>
+        </div>
+        <br>
+        <br>
+        <div id = "allQuestions">
+            <div id="question-field">
+                <label>السؤال الاول : </label>
+                <input class = "question" id = "q1" type = "text" autofocus/>
+                <br>
+                <br>
+                <label>Answer 1: </label>
+                <input id = "1a1" type = "text" autofocus/>
+                <label>Answer 2: </label>
+                <input id = "1a2" type = "text" autofocus/>
+                <br>
+                <br>
+                <label>Answer 3: </label>
+                <input id = "1a3"  type = "text"autofocus/>
+                <label>Answer 4: </label>
+                <input id = "1a4"  type = "text" autofocus/>
+                <br>
+                <br>
+                <label>correct Answer(1-4):</label>
+                <input class = "correct" id = "correct1"  type = "number" autofocus/>
+
+                 
+            </div>
+            <game-list>
+          
+        </div>
+        <br>
+        <div class="from">
+
+        <button onclick = "addQuestion()">اضافة سؤال  </button>
+    </div>
+        <br>
+        <br>
+        
+        <div class="form-field">
+            <button onclick = "updateDatabase()">انشاء الغرفة </button>
+        </div>
+        
+       
+        
+        
+        <script src = "../../socket.io/socket.io.js"></script>
+        <script src = "../../js/quizCreator.js"></script>
+        <footer class="footer">
+            <h2>للتواصل معنا</h2>
+            <a href="https://www.facebook.com/talbiyaksa/" class="fa fa-facebook"></a>
+            <a href="https://twitter.com/TalbiyaKSA" class="fa fa-twitter"></a>
+            <a href="https://www.instagram.com/talbiyaksa/" class="fa fa-instagram"></a>
+            <a href="https://www.snapchat.com/add/talbiya_ksa" class="fa fa-snapchat-ghost"></a>
+        
+            <div class="footer-column">
+                <p>info@talbiya.sa</p>
+                <p>00966556083172</p>
+            </div>
+        
+            <div class="logo3">
+                <a href="https://www.talbiya.sa/ar"></a>
+                <img src="https://i.ibb.co/YpTZhj9/4.png" alt="Your Logo">
+            </div>
+        
+            <p class="copyright">
+            </p>
+        </footer>
+        <p class="copyright">
+            Copyrights By | <span>صخر</span> | <a href="https://sakhr.online">sakhr solution</a>
+        </p>
+    </body>
+    
+</html>
