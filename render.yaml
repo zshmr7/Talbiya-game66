@@ -7,14 +7,4 @@ services:
     startCommand: 'node server/server.js'
     envVars:
       - key: MONGODB_URI
-        fromService:
-          name: my-mongo
-          key: MONGODB_URL
-  - type: private
-    name: my-mongo
-    env: docker
-    plan: free
-    dockerfilePath: Dockerfile
-    envVars:
-      - key: MONGODB_DATABASE
-        value: mydb
+        value: "mongodb+srv://v7zy:v7zy@cluster0.mongodb.net/Talbiya-game?retryWrites=true&w=majority"
