@@ -17,13 +17,18 @@ const server = http.createServer(app);
 const io = socketIO(server);
 const games = new LiveGames();
 const players = new Players();
+const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
+require('dotenv').config(); // Load environment variables
 
 // MongoDB setup
-const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy@outlook.com:Zz0599759271%3F%3F%0A@cluster.mongodb.net/kahootDB";
+const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:tWmru8sUPe4wRT5R@cluster0.mongodb.net/mydb?retryWrites=true&w=majority";
 
 // Connect to MongoDB using Mongoose
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("✅ MongoDB connected successfully!"))
+mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => console.log("✅ MongoDB connected successfully!"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
 
 // Connect to MongoDB using Native MongoClient (for manual queries)
