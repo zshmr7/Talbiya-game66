@@ -43,6 +43,7 @@ async function connectToMongoDB() {
 // ✅ Run connection
 connectToMongoDB();
 
+app.use('/socket.io', express.static(path.join(__dirname, '../node_modules/socket.io/client-dist')));
 // Serve static files
 app.use(express.static(publicPath));
 
