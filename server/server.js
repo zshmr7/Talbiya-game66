@@ -55,7 +55,7 @@ server.listen(3000, async () => {
 
 // ✅ Handle WebSocket connections
 io.on('connection', (socket) => {
-    console.log("🔵 New WebSocket connection established");
+    console.log("🟢 New client connected!");
 
     // When host connects for the first time
     socket.on('host-join', async (data) => {
@@ -152,8 +152,22 @@ io.on('connection', (socket) => {
         }
     });
 
+    // ✅ Handle new quiz creation (Inserts into MongoDB)
+    socket.on('newQuiz', async (quiz) => {
+        try {
+            console.log("📥 Received new quiz:", quiz);
+            const db = mongoose.connection.db;
+            await db.collection('kahootGames').insertOne(quiz);
+            console.log("✅ Quiz inserted successfully!");
+        } catch (error) {
+            console.error("❌ Error inserting quiz:", error);
+        }
+    });
+
     // Handle disconnect
     socket.on('disconnect', () => {
+        console.log("🔴 Client disconnected.");
+
         const game = games.getGame(socket.id);
         if (game) {
             if (!game.gameLive) {
