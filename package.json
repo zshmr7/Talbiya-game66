@@ -7,17 +7,22 @@
     "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+ "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "eiows": "^7.0.3",
     "express": "^4.19.2",
+    "heroku": "^8.1.9",
+    "http": "^0.0.1-security",
     "moment": "^2.30.1",
-    "mongodb": "^3.7",
-    "mongoose": "^7.0.0",
+    "mongodb": "3.7",
+    "mongoose": "^5.13.22",
     "open": "^10.1.0",
-    "socket.io": "^2.5.0"
+    "path": "^0.12.7",
+    "server": "^1.0.39",
+    "socket.io": "^4.7.5"
   },
   "devDependencies": {
     "expect": "^23.0.1"
