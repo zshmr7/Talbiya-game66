@@ -11,6 +11,9 @@ const { LiveGames } = require('./utils/liveGames');
 const { Players } = require('./utils/players');
 
 const publicPath = path.join(__dirname, '../public');
+// ✅ Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);

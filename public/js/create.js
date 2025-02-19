@@ -1,5 +1,8 @@
 var socket = io();
 
+
+console.log("✅ create.js file is loaded!");
+
 socket.on('connect', function(){
     socket.emit('requestDbNames');//Get database names to display to user
 });

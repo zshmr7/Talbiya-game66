@@ -1,6 +1,8 @@
 // ✅ Ensure socket.io is properly initialized
 var socket = io.connect(window.location.origin);
 
+console.log("✅ quiz create.js file is loaded!");
+
 // ✅ Log connection status
 socket.on('connect', function() {
     console.log("✅ Connected to the server!");
@@ -13,6 +15,8 @@ socket.on('disconnect', function() {
 });
 
 function updateDatabase() {
+    console.log("Create room button pressed");
+
     if (!socket) {
         console.error("❌ Socket.IO not connected. Cannot emit event.");
         return;
@@ -20,6 +24,12 @@ function updateDatabase() {
 
     var questions = [];
     var name = document.getElementById('name').value;
+
+    // ✅ Automatically count the number of questions
+    var questionElements = document.querySelectorAll('.question');  // Selects all elements with IDs starting with "q"
+    var questionNum = questionElements.length; // Get the total count of questions
+
+    console.log("Questions Num", questionNum);
 
     for (var i = 1; i <= questionNum; i++) {
         var question = document.getElementById('q' + i).value;
