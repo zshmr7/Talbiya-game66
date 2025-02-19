@@ -141,7 +141,9 @@ function cancelQuiz(){
 }
 
 socket.on('startGameFromCreator', function(data){
-    window.location.href = "../../host/?id=" + data;
+    console.log('Game Creator', data);
+    window.location.replace("../../host/?id=" + data);
+    //window.location.href = "/host/?id=" + data;
 });
 
 function randomColor(){

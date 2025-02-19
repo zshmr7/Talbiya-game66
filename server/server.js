@@ -162,14 +162,41 @@ io.on('connection', (socket) => {
 
     // ✅ Handle new quiz creation (Inserts into MongoDB)
     socket.on('newQuiz', async (quiz) => {
-        try {
-            console.log("📥 Received new quiz:", quiz);
-            const db = mongoose.connection.db;
-            await db.collection('kahootGames').insertOne(quiz);
-            console.log("✅ Quiz inserted successfully!");
-        } catch (error) {
-            console.error("❌ Error inserting quiz:", error);
+
+        console.log("📥 Received new quiz:", quiz);
+
+        const db = mongoose.connection.db;
+
+        // ✅ Fetch existing data to get the last ID
+        const existingQuizzes = await db.collection('kahootGames').find({}).toArray();
+        const num = existingQuizzes.length;
+
+        // ✅ Set `id` based on existing records
+        if (num === 0) {
+            quiz.id = 1;
+        } else {
+            quiz.id = existingQuizzes[num - 1].id + 1; // Set ID as last ID +1
         }
+
+        // ✅ Insert quiz into database
+        await db.collection('kahootGames').insertOne(quiz);
+
+        console.log("✅ Quiz saved to database with ID:", quiz.id);
+
+        // ✅ Emit event after saving
+        socket.emit('startGameFromCreator', num);
+
+        // try {
+        //     console.log("📥 Received new quiz:", quiz);
+        //     const db = mongoose.connection.db;
+        //     await db.collection('kahootGames').insertOne(quiz);
+            
+        //     console.log("✅ Quiz inserted successfully!");
+
+        //     socket.emit('startGameFromCreator', num);
+        // } catch (error) {
+        //     console.error("❌ Error inserting quiz:", error);
+        // }
     });
 
     // Handle disconnect
