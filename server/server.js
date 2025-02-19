@@ -12,13 +12,15 @@ const { Players } = require('./utils/players');
 
 const publicPath = path.join(__dirname, '../public');
 // ✅ Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 const games = new LiveGames();
 const players = new Players();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ MongoDB URI from environment variables
 const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:iUNHkBLElpvKi731@tabilya-game3.odtsp5d.mongodb.net/?retryWrites=true&w=majority&appName=tabilya-game3";
