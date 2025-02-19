@@ -50,9 +50,11 @@ app.use('/socket.io', express.static(path.join(__dirname, '../node_modules/socke
 // Serve static files
 app.use(express.static(publicPath));
 
+const PORT = process.env.PORT || 3000;  // Use environment variable or fallback to 3000
+
 // ✅ Start server on port 3000
-server.listen(3000, async () => {
-    console.log("✅ Server started on port 3000");
+server.listen(PORT, async () => {
+    console.log("✅ Server started on port", PORT);
     const open = (await import('open')).default;
     open('http://localhost:3000');
 });
