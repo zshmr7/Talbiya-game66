@@ -1,10 +1,27 @@
-var socket = io();
-var questionNum = 1; //Starts at two because question 1 is already present
+// ✅ Ensure socket.io is properly initialized
+var socket = io.connect(window.location.origin);
 
-function updateDatabase(){
+// ✅ Log connection status
+socket.on('connect', function() {
+    console.log("✅ Connected to the server!");
+    socket.emit('requestDbNames'); // Get database names
+});
+
+// ✅ Handle disconnection
+socket.on('disconnect', function() {
+    console.log("❌ Disconnected from the server!");
+});
+
+function updateDatabase() {
+    if (!socket) {
+        console.error("❌ Socket.IO not connected. Cannot emit event.");
+        return;
+    }
+
     var questions = [];
     var name = document.getElementById('name').value;
-    for(var i = 1; i <= questionNum; i++){
+
+    for (var i = 1; i <= questionNum; i++) {
         var question = document.getElementById('q' + i).value;
         var answer1 = document.getElementById(i + 'a1').value;
         var answer2 = document.getElementById(i + 'a2').value;
@@ -12,11 +29,24 @@ function updateDatabase(){
         var answer4 = document.getElementById(i + 'a4').value;
         var correct = document.getElementById('correct' + i).value;
         var answers = [answer1, answer2, answer3, answer4];
-        questions.push({"question": question, "answers": answers, "correct": correct})
+
+        questions.push({
+            "question": question,
+            "answers": answers,
+            "correct": correct
+        });
     }
+
+    var quiz = { id: 0, "name": name, "questions": questions };
+
+    console.log("📡 Sending quiz data to server:", quiz);
     
-    var quiz = {id: 0, "name": name, "questions": questions};
-    socket.emit('newQuiz', quiz);
+    // ✅ Emit event only if socket is connected
+    if (socket && socket.connected) {
+        socket.emit('newQuiz', quiz);
+    } else {
+        console.error("❌ Socket.IO connection lost. Unable to send data.");
+    }
 }
 
 function addQuestion(){
