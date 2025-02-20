@@ -1,7 +1,7 @@
 {
   "name": "talbiya-game",
   "version": "1.0.0",
-  "description": "A kahoot website clone",
+  "description": "Quiz Game website",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
