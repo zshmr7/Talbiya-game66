@@ -1,5 +1,5 @@
 {
-  "name": "kahootclone",
+  "name": "talbiya-game",
   "version": "1.0.0",
   "description": "A kahoot website clone",
   "main": "server/server.js",
