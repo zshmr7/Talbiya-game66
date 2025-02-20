@@ -22,7 +22,7 @@ const players = new Players();
 app.use(express.static(publicPath));
 
 // ✅ MongoDB URI from environment variables
-const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:iUNHkBLElpvKi731@tabilya-game3.odtsp5d.mongodb.net/?retryWrites=true&w=majority&appName=tabilya-game3";
+const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:iUNHkBLElpvKi731@tabilya-game3.odtsp5d.mongodb.net/?retryWrites=true&w=majority";
 
 if (!MONGO_URI) {
     console.error("❌ MongoDB URI is missing! Please check your environment variables.");
