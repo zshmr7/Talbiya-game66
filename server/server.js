@@ -19,7 +19,10 @@ const games = new LiveGames();
 const players = new Players();
 
 // ✅ Serve static files from the "public" directory
-app.use(express.static(publicPath));
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+});
 
 // ✅ MongoDB URI from environment variables
 const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://v7zy:iUNHkBLElpvKi731@tabilya-game3.odtsp5d.mongodb.net/?retryWrites=true&w=majority";
