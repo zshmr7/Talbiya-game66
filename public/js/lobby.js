@@ -22,5 +22,3 @@ socket.on('hostDisconnect', function(){
 socket.on('gameStartedPlayer', function(){
     window.location.href="/player/game/" + "?id=" + socket.id;
 });
-
-
