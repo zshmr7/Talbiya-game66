@@ -1,15 +1,12 @@
 var socket = io();
 
-
-console.log("✅ create.js file is loaded!");
-
 socket.on('connect', function(){
     socket.emit('requestDbNames');//Get database names to display to user
 });
 
 socket.on('gameNamesData', function(data){
     for(var i = 0; i < Object.keys(data).length; i++){
-        var div = document.getElementById('t');
+        var div = document.getElementById('game-list');
         var button = document.createElement('button');
         
         button.innerHTML = data[i].name;
