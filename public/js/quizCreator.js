@@ -1,37 +1,10 @@
-// ✅ Ensure socket.io is properly initialized
-var socket = io.connect(window.location.origin);
+var socket = io();
+var questionNum = 1; //Starts at two because question 1 is already present
 
-console.log("✅ quiz create.js file is loaded!");
-
-// ✅ Log connection status
-socket.on('connect', function() {
-    console.log("✅ Connected to the server!");
-    socket.emit('requestDbNames'); // Get database names
-});
-
-// ✅ Handle disconnection
-socket.on('disconnect', function() {
-    console.log("❌ Disconnected from the server!");
-});
-
-function updateDatabase() {
-    console.log("Create room button pressed");
-
-    if (!socket) {
-        console.error("❌ Socket.IO not connected. Cannot emit event.");
-        return;
-    }
-
+function updateDatabase(){
     var questions = [];
     var name = document.getElementById('name').value;
-
-    // ✅ Automatically count the number of questions
-    var questionElements = document.querySelectorAll('.question');  // Selects all elements with IDs starting with "q"
-    var questionNum = questionElements.length; // Get the total count of questions
-
-    console.log("Questions Num", questionNum);
-
-    for (var i = 1; i <= questionNum; i++) {
+    for(var i = 1; i <= questionNum; i++){
         var question = document.getElementById('q' + i).value;
         var answer1 = document.getElementById(i + 'a1').value;
         var answer2 = document.getElementById(i + 'a2').value;
@@ -39,24 +12,11 @@ function updateDatabase() {
         var answer4 = document.getElementById(i + 'a4').value;
         var correct = document.getElementById('correct' + i).value;
         var answers = [answer1, answer2, answer3, answer4];
-
-        questions.push({
-            "question": question,
-            "answers": answers,
-            "correct": correct
-        });
+        questions.push({"question": question, "answers": answers, "correct": correct})
     }
-
-    var quiz = { id: 0, "name": name, "questions": questions };
-
-    console.log("📡 Sending quiz data to server:", quiz);
     
-    // ✅ Emit event only if socket is connected
-    if (socket && socket.connected) {
-        socket.emit('newQuiz', quiz);
-    } else {
-        console.error("❌ Socket.IO connection lost. Unable to send data.");
-    }
+    var quiz = {id: 0, "name": name, "questions": questions};
+    socket.emit('newQuiz', quiz);
 }
 
 function addQuestion(){
@@ -141,9 +101,7 @@ function cancelQuiz(){
 }
 
 socket.on('startGameFromCreator', function(data){
-    console.log('Game Creator', data);
-    window.location.replace("../../host/?id=" + data);
-    //window.location.href = "/host/?id=" + data;
+    window.location.href = "../../host/?id=" + data;
 });
 
 function randomColor(){
@@ -157,12 +115,3 @@ function setBGColor(){
     var randColor = randomColor();
     document.getElementById('question-field').style.backgroundColor = randColor;
 }
-
-
-
-
-
-
-
-
-
