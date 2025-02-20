@@ -4,100 +4,117 @@ var correct = false;
 var name;
 var score = 0;
 
-var params = jQuery.deparam(window.location.search); //Gets the id from url
+var params = jQuery.deparam(window.location.search); // Gets player ID from URL
 
-socket.on('connect', function() {
-    //Tell server that it is host connection from game view
+// ✅ When player connects
+socket.on('connect', function () {
+    // Tell the server that a player is joining a game
     socket.emit('player-join-game', params);
-    
-    document.getElementById('answer1').style.visibility = "visible";
-    document.getElementById('answer2').style.visibility = "visible";
-    document.getElementById('answer3').style.visibility = "visible";
-    document.getElementById('answer4').style.visibility = "visible";
+
+    // Show answer buttons
+    showAnswerButtons();
 });
 
-socket.on('noGameFound', function(){
-    window.location.href = '../../';//Redirect user to 'join game' page 
+// ❌ If the game is not found, redirect to the home page
+socket.on('noGameFound', function () {
+    window.location.href = '../../';
 });
 
-function answerSubmitted(num){
-    if(playerAnswered == false){
+// ✅ Function when player submits an answer
+function answerSubmitted(num) {
+    if (!playerAnswered) {
         playerAnswered = true;
-        
-        socket.emit('playerAnswer', num);//Sends player answer to server
-        
-        //Hiding buttons from user
-        document.getElementById('answer1').style.visibility = "hidden";
-        document.getElementById('answer2').style.visibility = "hidden";
-        document.getElementById('answer3').style.visibility = "hidden";
-        document.getElementById('answer4').style.visibility = "hidden";
-        document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "في انتظار باقي اللعابين للاجابة !";
-        
+        socket.emit('playerAnswer', num); // Send answer to server
+
+        hideAnswerButtons();
+        showMessage("في انتظار باقي اللاعبين للإجابة !");
     }
 }
 
-//Get results on last question
-socket.on('answerResult', function(data){
-    if(data == true){
-        correct = true;
+// ✅ Handle answer result
+socket.on('answerResult', function (data) {
+    correct = data;
+});
+
+// ✅ Handle question completion
+socket.on('questionOver', function (data) {
+    if (correct) {
+        setBackground("#4CAF50");
+        showMessage("إجابة صحيحة!");
+    } else {
+        setBackground("#f94a1e");
+        showMessage("إجابة خاطئة!");
     }
+
+    hideAnswerButtons();
+    socket.emit('getScore'); // Request updated score
 });
 
-socket.on('questionOver', function(data){
-    if(correct == true){
-        document.body.style.backgroundColor = "#4CAF50";
-        document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "Correct!";
-    }else{
-        document.body.style.backgroundColor = "#f94a1e";
-        document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "Incorrect!";
-    }
-    document.getElementById('answer1').style.visibility = "hidden";
-    document.getElementById('answer2').style.visibility = "hidden";
-    document.getElementById('answer3').style.visibility = "hidden";
-    document.getElementById('answer4').style.visibility = "hidden";
-    socket.emit('getScore');
+// ✅ Update player score
+socket.on('newScore', function (data) {
+    document.getElementById('scoreText').innerHTML = "النقاط: " + data;
 });
 
-socket.on('newScore', function(data){
-    document.getElementById('scoreText').innerHTML = "Score: " + data;
-});
-
-socket.on('nextQuestionPlayer', function(){
+// ✅ Handle next question
+socket.on('nextQuestionPlayer', function () {
     correct = false;
     playerAnswered = false;
-    
+
+    showAnswerButtons();
+    hideMessage();
+    resetBackground();
+});
+
+// ❌ If the host disconnects, send the player back to the home page
+socket.on('hostDisconnect', function () {
+    window.location.href = "../../";
+});
+
+// ✅ Update player game data (Name & Score)
+socket.on('playerGameData', function (data) {
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].playerId === socket.id) {
+            document.getElementById('nameText').innerHTML = "الاسم: " + data[i].name;
+            document.getElementById('scoreText').innerHTML = "النقاط: " + data[i].gameData.score;
+        }
+    }
+});
+
+// ✅ Handle game over
+socket.on('GameOver', function () {
+    setBackground("#FFFFFF");
+    hideAnswerButtons();
+    showMessage("حظًا موفقًا!");
+});
+
+/** Utility Functions **/
+function showAnswerButtons() {
     document.getElementById('answer1').style.visibility = "visible";
     document.getElementById('answer2').style.visibility = "visible";
     document.getElementById('answer3').style.visibility = "visible";
     document.getElementById('answer4').style.visibility = "visible";
-    document.getElementById('message').style.display = "none";
-    document.body.style.backgroundColor = "white";
-    
-});
+}
 
-socket.on('hostDisconnect', function(){
-    window.location.href = "../../";
-});
-
-socket.on('playerGameData', function(data){
-   for(var i = 0; i < data.length; i++){
-       if(data[i].playerId == socket.id){
-           document.getElementById('nameText').innerHTML = "Name: " + data[i].name;
-           document.getElementById('scoreText').innerHTML = "Score: " + data[i].gameData.score;
-       }
-   }
-});
-
-socket.on('GameOver', function(){
-    document.body.style.backgroundColor = "#FFFFFF";
+function hideAnswerButtons() {
     document.getElementById('answer1').style.visibility = "hidden";
     document.getElementById('answer2').style.visibility = "hidden";
     document.getElementById('answer3').style.visibility = "hidden";
     document.getElementById('answer4').style.visibility = "hidden";
-    document.getElementById('message').style.display = "block";
-    document.getElementById('message').innerHTML = "حظا موفقا ";
-});
+}
 
+function showMessage(msg) {
+    document.getElementById('message').style.display = "block";
+    document.getElementById('message').innerHTML = msg;
+}
+
+function hideMessage() {
+    document.getElementById('message').style.display = "none";
+}
+
+function setBackground(color) {
+    document.body.style.backgroundColor = color;
+}
+
+function resetBackground() {
+    document.body.style.backgroundColor = "white";
+}
