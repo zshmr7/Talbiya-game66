@@ -170,23 +170,3 @@ socket.on('getTime', function(player){
         time: time
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
