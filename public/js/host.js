@@ -42,4 +42,3 @@ socket.on('gameStarted', function(id){
 socket.on('noGameFound', function(){
    window.location.href = '../../';//Redirect user to 'join game' page
 });
-
