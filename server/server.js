@@ -45,10 +45,7 @@ connectToMongoDB();
 app.use('/socket.io', express.static(path.join(__dirname, '../node_modules/socket.io/client-dist')));
 
 // ✅ Start Server
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-    console.log(`✅ Server running on http://localhost:${PORT}`);
-});
+module.exports = app;
 
 // ✅ WebSocket connections
 io.on('connection', (socket) => {
