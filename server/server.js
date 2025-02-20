@@ -55,21 +55,37 @@ io.on('connection', (socket) => {
     console.log("🟢 New client connected!");
 
     // ✅ Handle new quiz creation
-    socket.on('newQuiz', async (quiz) => {
-        console.log("📥 Received new quiz:", quiz);
+socket.on('newQuiz', async (quiz) => {
+    console.log("📥 Received new quiz:", quiz);
 
-        const db = mongoose.connection.db;
-        const gamePin = Math.floor(10000 + Math.random() * 90000); // Generate 5-digit PIN
-        quiz.pin = gamePin;
+    const db = mongoose.connection.db;
 
-        // ✅ Insert quiz into database
-        await db.collection('kahootGames').insertOne(quiz);
-        console.log("✅ Quiz saved with PIN:", gamePin);
+    // Fetch existing data to get the last ID
+    const existingQuizzes = await db.collection('kahootGames').find({}).toArray();
+    const num = existingQuizzes.length;
 
-        // ✅ Send PIN back to the creator & redirect them to the lobby
-        socket.emit("quizCreated", gamePin);
-        io.emit("displayQuizPin", gamePin);
-    });
+    // Set ID based on existing records
+    if (num === 0) {
+        quiz.id = 1;
+    } else {
+        quiz.id = existingQuizzes[num - 1].id + 1;
+    }
+
+    // Generate a random game pin
+    const gamePin = Math.floor(Math.random() * 90000) + 10000;
+
+    // Insert quiz into database
+    quiz.pin = gamePin; // Store pin with quiz
+    await db.collection('kahootGames').insertOne(quiz);
+
+    console.log(`✅ Quiz saved with PIN: ${gamePin}`);
+
+    // Emit the pin to the host
+    socket.emit('showGamePin', { pin: gamePin });
+
+    // Redirect the host to the game lobby
+    socket.emit('startGameFromCreator', gamePin);
+});
 
     // ✅ Player joins game
     socket.on('player-join', (data) => {
